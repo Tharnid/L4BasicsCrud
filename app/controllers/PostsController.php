@@ -48,10 +48,10 @@ class PostsController extends BaseController {
 
 		$input = Input::all();
 
-		$v = validator::make($input, Post::$rules);
+		$v = Validator::make($input, Post::$rules);
 		if ($v->passes())
 		{
-			$this->posts->create($input);
+			$this->post->create($input);
 
 			return Redirect::route('posts.index');
 		}
