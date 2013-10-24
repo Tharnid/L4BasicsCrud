@@ -92,10 +92,8 @@ class PostsController extends BaseController {
 		{
 			return Redirect::route('posts.index');
 		}
-		else
-		{
-			return View::make('posts.edit', compact('post'));
-		}
+
+		return View::make('posts.edit', compact('post'));
 	}
 
 	/**
@@ -116,15 +114,13 @@ class PostsController extends BaseController {
 			$post = $this->post->find($id);
 			$post->update($input);
 
-			return Redirect::route('posts.show', $id); 
+			return View::make('posts.show', $id); 
 		}
-		else
-		{
+
 			return Redirect::route('posts.edit', $id)
 				->withInput()
-				->withErrors()
+				->withErrors($v)
 				->with('message', 'There were validation errors!!!');
-		}
 	}
 
 	/**
